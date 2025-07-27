@@ -1,0 +1,70 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 py-8">
+  <div class="w-full max-w-5xl bg-white/80 rounded-3xl shadow-2xl p-8 animate-fade-in">
+    <h2 class="text-4xl font-extrabold mb-6 text-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-lg animate-fade-in">Comparador de Canais do YouTube</h2>
+    <div class="text-base text-gray-700 mb-4 text-center animate-fade-in">{{ instrucoes }}</div>
+
+    <!-- Pesquisador de ID do canal -->
+    <div class="mb-8 p-4 border rounded-xl bg-gradient-to-r from-green-50 to-green-100 shadow animate-fade-in-up">
+      <div class="mb-2 font-semibold text-green-800">Descubra o ID de um canal:</div>
+      <div class="flex gap-2 mb-2 flex-col md:flex-row">
+        <input [(ngModel)]="urlPesquisa" class="border-2 border-green-300 focus:border-green-500 transition-all p-2 rounded-lg w-full outline-none shadow-sm" placeholder="Cole a URL do canal aqui">
+        <button (click)="pesquisarId()" class="bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-2 rounded-lg font-bold shadow hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-200">Pesquisar ID</button>
+      </div>
+      <div *ngIf="idPesquisado" class="text-green-700 font-mono animate-fade-in">ID encontrado: <span class="font-bold">{{ idPesquisado }}</span></div>
+      <div *ngIf="erroPesquisa" class="text-red-500 animate-fade-in">{{ erroPesquisa }}</div>
+    </div>
+
+    <div class="flex flex-col gap-4 mb-6 animate-fade-in-up">
+      <div *ngFor="let canal of canais; let i = index" class="flex gap-2 items-center">
+        <input [(ngModel)]="canal.id" class="border-2 border-blue-300 focus:border-blue-500 transition-all p-2 rounded-lg w-full outline-none shadow-sm" placeholder="ID do canal {{i+1}}">
+        <button *ngIf="canais.length > 2" (click)="removerCanal(i)" class="bg-red-100 text-red-600 rounded-lg px-3 py-1 font-bold hover:bg-red-200 transition-all">✕</button>
+      </div>
+      <button (click)="adicionarCanal()" class="bg-gradient-to-r from-purple-400 to-pink-400 text-white px-6 py-2 rounded-lg font-bold shadow hover:scale-105 hover:from-purple-500 hover:to-pink-500 transition-all duration-200 w-full">+ Adicionar canal</button>
+    </div>
+    <button (click)="comparar()" class="bg-gradient-to-r from-blue-500 to-pink-500 text-white px-8 py-3 rounded-xl font-bold shadow-lg w-full mb-6 hover:scale-105 hover:from-blue-600 hover:to-pink-600 transition-all duration-200 animate-fade-in">Comparar</button>
+    <div *ngIf="erro" class="text-red-500 mb-4 text-center font-semibold animate-fade-in">{{ erro }}</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let canal of canais; let i = index" class="border-2 border-blue-200 rounded-2xl p-6 bg-white/90 shadow-xl flex flex-col items-center animate-fade-in-up" [ngClass]="{'border-pink-200': i % 2 === 1, 'border-blue-200': i % 2 === 0}">
+        <ng-container *ngIf="canal.info">
+          <img [src]="canal.info.snippet.thumbnails.high.url" alt="Thumb" class="mb-4 rounded-full w-32 h-32 shadow-lg border-4 border-blue-300 animate-pop-in">
+          <h3 class="font-extrabold text-2xl mb-2 text-blue-700 text-center">{{ canal.info.snippet.title }}</h3>
+          <p class="text-gray-600 mb-2 text-center">{{ canal.info.snippet.customUrl ? '@' + canal.info.snippet.customUrl : '' }}</p>
+          <div class="flex flex-col gap-1 text-lg text-gray-800">
+            <span [ngClass]="getClasseDestaque('inscritos', i)">👥 Inscritos: <span class="font-bold">{{ canal.info.statistics.subscriberCount | number }}</span></span>
+            <span [ngClass]="getClasseDestaque('videos', i)">🎬 Vídeos: <span class="font-bold">{{ canal.info.statistics.videoCount | number }}</span></span>
+            <span [ngClass]="getClasseDestaque('views', i)">👁️ Visualizações: <span class="font-bold">{{ canal.info.statistics.viewCount | number }}</span></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="canal.erro">
+          <div class="text-red-500 font-bold text-center mt-8">{{ canal.erro }}</div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Animações Tailwind customizadas -->
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.7s ease;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.7s ease;
+  }
+  .animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+</style> 

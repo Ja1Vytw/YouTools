@@ -21,8 +21,12 @@ export class YoutubeService {
   }
 
   getChannelIdByHandle(handle: string): Observable<any> {
-    // Busca pelo handle usando a API de search
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${handle}&key=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
+  getVideoInfo(videoId: string): Observable<any> {
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoId}&key=${this.apiKey}`;
     return this.http.get(url);
   }
 } 

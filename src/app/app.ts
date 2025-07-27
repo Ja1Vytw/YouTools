@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ComparadorComponent } from './comparador/comparador.component';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ComparadorComponent],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

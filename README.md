@@ -1,59 +1,57 @@
-# ComparadorYoutube
+# YouTools
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+**YouTools** é uma central de ferramentas para YouTube, feita para criadores, curiosos e fãs da plataforma. Compare canais, descubra o ID de qualquer canal, converta vídeos, estime ganhos e muito mais — tudo em um só lugar, com visual moderno e fácil de usar.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Funcionalidades
 
-```bash
+- **Comparador de Canais**
+  - Compare inscritos, visualizações e número de vídeos de vários canais.
+  - Destaque visual para o maior e menor em cada aspecto.
+  - Adicione/remova quantos canais quiser.
+  - Descubra facilmente o ID de qualquer canal a partir da URL.
+
+- **Conversor de Vídeo**
+  - _(Em breve)_ Converta links do YouTube para MP3 ou MP4.
+
+- **Estimador de Ganhos**
+  - _(Em breve)_ Cole a URL de um vídeo e veja uma estimativa de quanto ele gerou em receita.
+
+- **Outras ferramentas**
+  - _(Em breve)_ Baixar thumbnail, ver tags, analisar engajamento, e mais!
+
+---
+
+## 🚀 Como usar
+
+```sh
+git clone https://github.com/Ja1Vytw/YouTools.git
+cd YouTools
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse [http://localhost:4200](http://localhost:4200) no navegador.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🛠️ Tecnologias
 
-```bash
-ng generate component component-name
-```
+- Angular Standalone
+- Tailwind CSS
+- TypeScript
+- YouTube Data API
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 📄 Licença
 
-## Building
+Este projeto é open source, sinta-se livre para contribuir!
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 💡 Sugestões ou bugs?
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Abra uma issue ou envie um pull request!  
+Ideias para novas ferramentas são muito bem-vindas.
